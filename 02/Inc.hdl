@@ -1,0 +1,17 @@
+/* Inc:
+   in | sum | carry
+    0 |  1  |   0
+    1 |  0  |   1
+*/
+  
+CHIP Inc {
+    IN in;
+    OUT sum, carry;
+
+    PARTS:
+    Not (in=in, out=sum);
+
+    /* unfortunately I can't just write carry=in */
+    Not (in=in, out=notin);  
+    Not (in=notin, out=carry);
+}

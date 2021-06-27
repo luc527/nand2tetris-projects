@@ -1,0 +1,31 @@
+/* This file is part of www.nand2tetris.org
+   and the book "The Elements of Computing Systems"
+   by Nisan and Schocken, MIT Press.
+   File name: projects/01/Mux.hdl */
+
+/** 
+ * Multiplexor:
+ * out = a if sel == 0
+ *       b otherwise
+ */
+
+CHIP Mux {
+    IN a, b, sel;
+    OUT out;
+
+    PARTS:
+    /*
+               ((a And  Not(sel)) Or      (b And sel))
+    = Not(Not( ((a And  Not(sel)) Or      (b And sel)) ))
+    = Not(   Not(a And  Not(sel)) And  Not(b And sel) )
+    =       (Not(a And  Not(sel)) Nand Not(b And sel))
+    =          ((a Nand Not(sel)) Nand    (b Nand sel)))
+    Or I could've just drawn the initial implementation,
+    translated the And and Or into their implementations,
+    and noticed a double-not in the middle (try it, draw the diagram)
+    */
+    Not  (in=sel, out=Notsel);
+    Nand (a=a,  b=Notsel, out=w1);
+    Nand (a=b,  b=sel,    out=w2);
+    Nand (a=w1, b=w2,     out=out);
+}
