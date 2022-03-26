@@ -1,2 +1,4 @@
 assembler
 assembler.exe
+*.hack
+!comparison/*.hack
