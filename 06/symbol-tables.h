@@ -67,7 +67,7 @@ ctab jmptab = {
 
 #define ATAB_CAPACITY (1<<16)
 /**
- * Symbol-table for A-instructions -- for user-defined (and built-in) variables.
+ * Symbol-table for A-instructions -- for variables and labels.
  * This is a hash table using open addressing with linear probing .
  * A program has at most 32768 instructions, so at most 32768
  * A-instructions. To ensure a load factor of 50% in the
